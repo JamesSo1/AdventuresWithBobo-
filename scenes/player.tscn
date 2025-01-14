@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://cop67uune134m"]
+[gd_scene load_steps=24 format=3 uid="uid://cop67uune134m"]
 
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_1wrn6"]
 [ext_resource type="Texture2D" uid="uid://ctnwrvr35obm2" path="res://assets/img/DinoSprites - doux.png" id="1_wx86l"]
 [ext_resource type="AudioStream" uid="uid://dckmlthgxq805" path="res://assets/sound/Jump 1.wav" id="2_ea7k3"]
 
@@ -152,7 +153,9 @@ size = Vector2(12, 17)
 size = Vector2(12.125, 14.875)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(8, 8)
+script = ExtResource("1_1wrn6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
