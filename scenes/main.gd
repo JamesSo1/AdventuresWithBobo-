@@ -1,11 +1,14 @@
 extends Node
 
+
+
 #Game Variables
 const PLAYER_START_POS := Vector2i(150,485)
 const CAM_START_POS := Vector2i(576,324)
 var score : int
 const SCORE_MODIFIER : int = 10
 var speed : float
+const SPEED_MODIFIER : int = 5000
 const START_SPEED : float = 10.0
 const MAX_SPEED : int = 25
 var screen_size : Vector2i
@@ -34,7 +37,9 @@ func new_game():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if game_running:
-		speed = START_SPEED
+		speed = START_SPEED + score / SPEED_MODIFIER
+		if speed > MAX_SPEED:
+			speed = MAX_SPEED
 		
 		#Move player and camera
 		$Player.position.x += speed

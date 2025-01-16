@@ -10,6 +10,7 @@ func _physics_process(delta: float) -> void:
 		if not get_parent().game_running:
 			$AnimatedSprite2D.play("Idle")
 		else:
+			#Note that DuckCol is contained inside the area of RunCol
 			$RunCol.disabled = false
 			if Input.is_action_pressed("ui_accept"):
 				velocity.y = JUMP_SPEED
