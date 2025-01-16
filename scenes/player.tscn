@@ -112,7 +112,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 10.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -160,8 +160,9 @@ script = ExtResource("1_1wrn6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qpoq0")
-animation = &"Duck"
+animation = &"Idle"
 autoplay = "Idle"
+frame_progress = 0.743315
 
 [node name="RunCol" type="CollisionShape2D" parent="."]
 position = Vector2(-2.125, 0.5)
