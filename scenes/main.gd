@@ -4,7 +4,7 @@ extends Node
 const PLAYER_START_POS := Vector2i(150,485)
 const CAM_START_POS := Vector2i(576,324)
 var score : int
-var speed:float
+var speed : float
 const START_SPEED : float = 10.0
 const MAX_SPEED : int = 25
 var screen_size : Vector2i
@@ -17,6 +17,7 @@ func _ready() -> void:
 func new_game():
 	#reset the variables
 	score = 0
+	
 	#reset the nodes
 	$Player.position = PLAYER_START_POS
 	$Player.velocity = Vector2i(0,0)
