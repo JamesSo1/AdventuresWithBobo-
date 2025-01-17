@@ -8,13 +8,13 @@ size = Vector2(2304, 78.5)
 [node name="Ground" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 286)
+position = Vector2(0, 565)
 scale = Vector2(3.6, 2)
 texture = ExtResource("1_7orfb")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1728, 466)
+position = Vector2(1728, 607)
 scale = Vector2(3.6, 2)
 texture = ExtResource("1_7orfb")
 
