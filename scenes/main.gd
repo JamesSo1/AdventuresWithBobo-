@@ -2,8 +2,9 @@ extends Node
 
 #Preload Obstacles
 var porcupine_scene = preload("res://scenes/porcupine.tscn")
+var redpanda_scene = preload("res://scenes/red_panda.tscn")
 var bird_scene = preload("res://scenes/bird.tscn")
-var obstacle_types := [porcupine_scene, bird_scene]
+var obstacle_types := [porcupine_scene, redpanda_scene]
 var obstacles : Array
 #How high the bird obstacles will spawn
 var bird_heights = [200,390]
@@ -72,9 +73,7 @@ func _process(delta: float) -> void:
 func generate_obs():
 	#Generate ground obstacles
 	if obstacles.is_empty() or last_obs.position.x < score + randi_range(300,500):
-		# To make obs_type random, set it equal to 
-		# obstacle_types[randi() % obstacle_types.size()]
-		var obs_type = porcupine_scene
+		var obs_type = obstacle_types[randi() % obstacle_types.size()]
 		var obs
 		var max_obs = 3
 		for i in range(randi() % max_obs + 1):
