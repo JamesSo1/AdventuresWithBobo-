@@ -19,6 +19,9 @@ var speed : float
 const SPEED_MODIFIER : int = 5000
 const START_SPEED : float = 10.0
 const MAX_SPEED : int = 25
+var difficulty = 0
+const DIFFICULTY_MODIFIER = 1500
+const MAX_DIFFICULTY : int = 2
 var screen_size : Vector2i
 var ground_height : int
 var game_running : bool
@@ -35,6 +38,7 @@ func new_game():
 	score = 0
 	show_score()
 	game_running = false
+	difficulty = 0
 	
 	#reset the nodes
 	$Player.position = PLAYER_START_POS
@@ -51,6 +55,8 @@ func _process(delta: float) -> void:
 		speed = START_SPEED + score / SPEED_MODIFIER
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
+		adjust_difficulty()
+		print(difficulty)
 		
 		#Generate obstacles
 		generate_obs()
@@ -76,7 +82,7 @@ func generate_obs():
 	if obstacles.is_empty() or last_obs.position.x < score + randi_range(300,500):
 		var obs_type = obstacle_types[randi() % obstacle_types.size()]
 		var obs
-		var max_obs = 3
+		var max_obs = difficulty + 1
 		for i in range(randi() % max_obs + 1):
 			obs = obs_type.instantiate()
 			var obs_height = obs.get_node("Sprite2D").texture.get_height()
@@ -94,3 +100,10 @@ func add_obs(obs, x, y):
 	
 func show_score():
 	$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score / SCORE_MODIFIER)
+
+func adjust_difficulty():
+	#The difficulty increases by 1 level every 1500 points and the max difficulty is 2
+	difficulty = (score / SCORE_MODIFIER) / DIFFICULTY_MODIFIER
+	if difficulty > MAX_DIFFICULTY:
+		difficulty = MAX_DIFFICULTY
+		
