@@ -15,6 +15,7 @@ const PLAYER_START_POS := Vector2i(150,485)
 const CAM_START_POS := Vector2i(576,324)
 var score : int
 const SCORE_MODIFIER : int = 10
+var high_score : int
 var speed : float
 const SPEED_MODIFIER : int = 5000
 const START_SPEED : float = 10.0
@@ -38,13 +39,14 @@ func new_game():
 	#Reset the variables
 	score = 0
 	show_score()
+	show_high_score()
 	game_running = false
 	get_tree().paused = false
 	difficulty = 0
 	
 	#Delete any obstacles remanining from the previous game
 	for obs in obstacles:
-		obs.queue.free()
+		obs.queue_free() 
 	
 	#reset the nodes
 	$Player.position = PLAYER_START_POS
@@ -72,9 +74,10 @@ func _process(delta: float) -> void:
 		$Player.position.x += speed
 		$Camera2D.position.x += speed
 		
-		#Update score
+		#Update score and high score
 		score += speed
 		show_score()
+		show_high_score()
 		
 		#Update ground position
 		if $Camera2D.position.x - $Ground.position.x > screen_size.x * 1.5:
@@ -131,6 +134,11 @@ func hit_obs(body):
 
 func show_score():
 	$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score / SCORE_MODIFIER)
+
+func show_high_score():
+	if score > high_score:
+		high_score = score 
+	$HUD.get_node("HighScoreLabel").text = "HIGH SCORE: " + str(high_score / SCORE_MODIFIER)
 
 func adjust_difficulty():
 	#The difficulty increases by 1 level every 1500 points and the max difficulty is 2
