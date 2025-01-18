@@ -8,7 +8,7 @@ var bird_scene = preload("res://scenes/bird.tscn")
 var obstacle_types := [porcupine_scene, redpanda_scene, chicken_scene]
 var obstacles : Array
 #How high the bird obstacles will spawn
-var bird_heights = [200,390]
+var bird_heights = [380, 406]
 
 #Game Variables
 const PLAYER_START_POS := Vector2i(150,485)
@@ -45,9 +45,11 @@ func new_game():
 	difficulty = 0
 	
 	#Delete any obstacles remanining from the previous game
+	print(obstacles)
 	for obs in obstacles:
-		remove_obs(obs)
-	
+		obs.queue_free()
+	obstacles = []
+	print(obstacles)
 	#reset the nodes
 	$Player.position = PLAYER_START_POS
 	$Player.velocity = Vector2i(0,0)
