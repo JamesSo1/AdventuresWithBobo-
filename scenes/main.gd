@@ -46,7 +46,7 @@ func new_game():
 	
 	#Delete any obstacles remanining from the previous game
 	for obs in obstacles:
-		obs.queue_free() 
+		remove_obs(obs)
 	
 	#reset the nodes
 	$Player.position = PLAYER_START_POS
@@ -65,7 +65,6 @@ func _process(delta: float) -> void:
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
 		adjust_difficulty()
-		print(difficulty)
 		
 		#Generate obstacles
 		generate_obs()
@@ -123,10 +122,10 @@ func add_obs(obs, x, y):
 	obstacles.append(obs)
 	
 func remove_obs(obs):
-	#Removes obstacle node from main node scene
-	obs.queue_free()
 	#Removes obstacle from obstacles array
 	obstacles.erase(obs)
+	#Removes obstacle node from main node scene
+	obs.queue_free()
 	
 func hit_obs(body):
 	if body.name == "Player":
