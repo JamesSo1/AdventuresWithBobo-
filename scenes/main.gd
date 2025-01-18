@@ -3,8 +3,9 @@ extends Node
 #Preload Obstacles
 var porcupine_scene = preload("res://scenes/porcupine.tscn")
 var redpanda_scene = preload("res://scenes/red_panda.tscn")
+var chicken_scene = preload("res://scenes/chicken.tscn")
 var bird_scene = preload("res://scenes/bird.tscn")
-var obstacle_types := [porcupine_scene, redpanda_scene]
+var obstacle_types := [porcupine_scene, redpanda_scene, chicken_scene]
 var obstacles : Array
 #How high the bird obstacles will spawn
 var bird_heights = [200,390]
