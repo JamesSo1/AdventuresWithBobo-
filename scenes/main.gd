@@ -1,5 +1,5 @@
 extends Node
-#TODO: Implement touch sensitive jump(jump lower or higher)
+
 #Preload Obstacles
 var porcupine_scene = preload("res://scenes/porcupine.tscn")
 var redpanda_scene = preload("res://scenes/red_panda.tscn")
@@ -7,8 +7,8 @@ var chicken_scene = preload("res://scenes/chicken.tscn")
 var bird_scene = preload("res://scenes/bird.tscn")
 var obstacle_types := [porcupine_scene, redpanda_scene, chicken_scene]
 var obstacles : Array
-#How high the bird obstacles will spawn
-var bird_heights = [410,550]
+#How high the bird obstacles will spawn 
+var bird_heights = [390,412,550]
 
 #Game Variables
 const PLAYER_START_POS := Vector2i(150,485)
@@ -19,9 +19,9 @@ var high_score : int
 var speed : float
 const SPEED_MODIFIER : int = 5000
 const START_SPEED : float = 9.0
-const MAX_SPEED : int = 13
+const MAX_SPEED : int = 20
 var difficulty = 0
-const DIFFICULTY_MODIFIER = 1500
+const DIFFICULTY_MODIFIER = 2000
 const MAX_DIFFICULTY : int = 2
 var screen_size : Vector2i
 var ground_height : int
@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 		speed = START_SPEED + score / SPEED_MODIFIER
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
+		print(speed)
 		adjust_difficulty()
 		
 		#Generate obstacles
@@ -99,7 +100,7 @@ func _process(delta: float) -> void:
 func generate_obs():
 	if obstacles.is_empty() or last_obs.position.x < score + randi_range(300,600):
 		var random_distance = randi_range(650,900)
-		if difficulty == MAX_DIFFICULTY and not(is_bird_present) and (randi() % 3) == 0:
+		if difficulty == MAX_DIFFICULTY and not(is_bird_present) and (randi() % 2) == 0:
 			var obs = bird_scene.instantiate()
 			var obs_x : int = screen_size.x + score + random_distance
 			var obs_y : int = bird_heights[randi() % bird_heights.size()]
@@ -144,7 +145,7 @@ func show_high_score():
 	$HUD.get_node("HighScoreLabel").text = "HIGH SCORE: " + str(high_score / SCORE_MODIFIER)
 
 func adjust_difficulty():
-	#The difficulty increases by 1 level every 1500 points and the max difficulty is 2
+	#The difficulty increases by 1 level every 2000 points and the max difficulty is 2
 	difficulty = (score / SCORE_MODIFIER) / DIFFICULTY_MODIFIER
 	if difficulty > MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
