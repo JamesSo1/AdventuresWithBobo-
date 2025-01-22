@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2jery48awof3"]
+
+[ext_resource type="FontFile" uid="uid://dtjooa0rkuhpn" path="res://assets/fonts/mago3.ttf" id="1_xyhlp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eipc2"]
+bg_color = Color(0.587078, 0.587079, 0.587078, 1)
+
+[node name="GameOver" type="CanvasLayer"]
+
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -27.5
+offset_right = 125.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xyhlp")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/hover = SubResource("StyleBoxFlat_eipc2")
+text = "RESTART"

@@ -147,10 +147,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq21u"]
-size = Vector2(12, 17)
+size = Vector2(6.9375, 17.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cotis"]
-size = Vector2(12.125, 14.875)
+size = Vector2(7, 14.8125)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -165,11 +165,11 @@ autoplay = "Idle"
 frame_progress = 0.183489
 
 [node name="RunCol" type="CollisionShape2D" parent="."]
-position = Vector2(-2.125, 0.5)
+position = Vector2(-0.46875, 0.5625)
 shape = SubResource("RectangleShape2D_eq21u")
 
 [node name="DuckCol" type="CollisionShape2D" parent="."]
-position = Vector2(-2.1875, 1.3125)
+position = Vector2(-0.5, 1.71875)
 shape = SubResource("RectangleShape2D_cotis")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]

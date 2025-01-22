@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci267tfq6qp7s"]
+
+[ext_resource type="Texture2D" uid="uid://cfs67b65e4yce" path="res://assets/img/obstacles/RedPanda.png" id="1_eyo7e"]
+
+[node name="RedPanda" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(8, 8)
+texture = ExtResource("1_eyo7e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(8, 8)
+polygon = PackedVector2Array(8, -4, 5.125, -4, 4.875, -3.25, 1, -3, 0.943247, -4, -1.875, -4, -2, -3.25, -4.875, -3, -5, -2.125, -5.92147, -1.88887, -6, -1.25, -6.99714, -1.20014, -7.125, -0.25, -8.125, 0, -8.32265, 0.903544, -9, 1, -9, 4, 8.125, 4)

@@ -1,5 +1,5 @@
 extends Node
-
+#TODO: Implement touch sensitive jump(jump lower or higher)
 #Preload Obstacles
 var porcupine_scene = preload("res://scenes/porcupine.tscn")
 var redpanda_scene = preload("res://scenes/red_panda.tscn")
@@ -18,7 +18,7 @@ const SCORE_MODIFIER : int = 10
 var high_score : int
 var speed : float
 const SPEED_MODIFIER : int = 5000
-const START_SPEED : float = 7.0
+const START_SPEED : float = 9.0
 const MAX_SPEED : int = 13
 var difficulty = 0
 const DIFFICULTY_MODIFIER = 1500

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmwgrfylhv7la"]
+
+[ext_resource type="Texture2D" uid="uid://cujkqjx0xjoqj" path="res://assets/img/obstacles/Chicken.png" id="1_wuwg2"]
+
+[node name="Chicken" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_wuwg2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(4, 4)
+polygon = PackedVector2Array(-8.75, -10.25, -10.75, -6.5, -13.25, -6.25, -13.75, 10.5, 13.25, 10.25, 13.5, 10.1, 12.25, -5.25, 3.75, -2.75, -2.25, -9.25)
