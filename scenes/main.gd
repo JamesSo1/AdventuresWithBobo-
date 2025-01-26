@@ -19,7 +19,7 @@ var high_score : int
 var speed : float
 const SPEED_MODIFIER : int = 5000
 const START_SPEED : float = 13.0
-const MAX_SPEED : int = 20
+const MAX_SPEED : int = 25
 var difficulty = 0
 const DIFFICULTY_MODIFIER = 2000
 const MAX_DIFFICULTY : int = 2
@@ -65,8 +65,7 @@ func new_game():
 func _process(delta: float) -> void:
 	if game_running:
 		speed = START_SPEED + score / SPEED_MODIFIER
-		if speed > MAX_SPEED:
-			speed = MAX_SPEED
+		speed = min(speed, MAX_SPEED)
 		print(speed)
 		adjust_difficulty()
 		
@@ -109,7 +108,7 @@ func generate_obs():
 		else:
 			var obs_type = obstacle_types[randi() % obstacle_types.size()]
 			var obs
-			var max_obs = difficulty + 1
+			var max_obs = min(difficulty + 1, 2)
 			for i in range(randi() % max_obs + 1):
 				obs = obs_type.instantiate()
 				var obs_height = obs.get_node("Sprite2D").texture.get_height()
