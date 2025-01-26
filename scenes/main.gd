@@ -18,7 +18,7 @@ const SCORE_MODIFIER : int = 10
 var high_score : int
 var speed : float
 const SPEED_MODIFIER : int = 5000
-const START_SPEED : float = 9.0
+const START_SPEED : float = 13.0
 const MAX_SPEED : int = 20
 var difficulty = 0
 const DIFFICULTY_MODIFIER = 2000

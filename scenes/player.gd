@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-#const GRAVITY : int = 5500
-#const JUMP_SPEED : int = -1650
-
 const GRAVITY : int = 9000
 const JUMP_SPEED : int = -1650
 
