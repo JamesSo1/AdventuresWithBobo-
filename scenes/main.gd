@@ -1,3 +1,9 @@
+#TODO: Avoid the user from manually changing the score if possible to avoid 
+#cheating 
+
+#TODO: Lock the screen size or make it so that the game 
+# adjusts to larger or smaller sizes
+
 extends Node
 
 #Preload Obstacles
@@ -10,7 +16,8 @@ var obstacles : Array
 #How high the bird obstacles will spawn 
 var bird_heights = [390,412,550]
 
-#Game Variables
+#Game Variables (Note: The score and high score values are different from the
+#ones displayed in the game)
 const PLAYER_START_POS := Vector2i(150,485)
 const CAM_START_POS := Vector2i(576,324)
 var score : int
@@ -19,7 +26,7 @@ var high_score : int
 var speed : float
 const SPEED_MODIFIER : int = 5000
 const START_SPEED : float = 13.0
-const MAX_SPEED : int = 25
+const MAX_SPEED : int = 20
 var difficulty = 0
 const DIFFICULTY_MODIFIER = 2000
 const MAX_DIFFICULTY : int = 2
@@ -31,15 +38,20 @@ var last_obs
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Game window is 1152 by 648 pixels
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	$GameOver.get_node("RestartButton").pressed.connect(new_game)
 	new_game()
 	
 func new_game():
+	var user_path = ProjectSettings.globalize_path("user://")
+	print("User path: ", user_path)
+
 	#Reset the variables
 	score = 0
 	show_score()
+	load_high_score()
 	show_high_score()
 	game_running = false
 	get_tree().paused = false
@@ -64,8 +76,7 @@ func new_game():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if game_running:
-		speed = START_SPEED + score / SPEED_MODIFIER
-		speed = min(speed, MAX_SPEED)
+		speed = min(START_SPEED + score / SPEED_MODIFIER, MAX_SPEED)
 		print(speed)
 		adjust_difficulty()
 		
@@ -140,16 +151,44 @@ func show_score():
 
 func show_high_score():
 	if score > high_score:
-		high_score = score 
+		high_score = score
 	$HUD.get_node("HighScoreLabel").text = "HIGH SCORE: " + str(high_score / SCORE_MODIFIER)
+
+# Save the high score to a file
+func save_high_score():
+	var file = FileAccess.open("user://high_score.save", FileAccess.WRITE)
+	if file:
+		var saved_score = file.get_line().to_int()
+		if high_score > saved_score:
+			file.store_line(str(high_score))
+			file.close()
+			print("New high score saved: ", high_score)
+	else:
+		print("Failed to open save file!")
+
+# Load the high score from a file
+func load_high_score():
+	if FileAccess.file_exists("user://high_score.save"):
+		var file = FileAccess.open("user://high_score.save", FileAccess.READ)
+		if file:
+			var saved_score = file.get_line().to_int()
+			high_score = saved_score
+			file.close()
+			print("High score loaded: ", high_score)
+		else:
+			print("Failed to open save file!")
+	else:
+		print("No save file found. Setting high score to 0.")
+		high_score = 0
 
 func adjust_difficulty():
 	#The difficulty increases by 1 level every 2000 points and the max difficulty is 2
 	difficulty = (score / SCORE_MODIFIER) / DIFFICULTY_MODIFIER
 	if difficulty > MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
-
+		
 func game_over():
 	get_tree().paused = true 
 	game_running = false
+	save_high_score()
 	$GameOver.show()
