@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://cop67uune134m"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_1wrn6"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_1wrn6"]
 [ext_resource type="Texture2D" uid="uid://ctnwrvr35obm2" path="res://assets/img/DinoSprites - doux.png" id="1_wx86l"]
 [ext_resource type="AudioStream" uid="uid://dckmlthgxq805" path="res://assets/sound/Jump 1.wav" id="2_ea7k3"]
 

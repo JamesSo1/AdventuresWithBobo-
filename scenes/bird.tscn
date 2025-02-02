@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bm6bwi80fwvme"]
 
-[ext_resource type="Script" path="res://scenes/bird.gd" id="1_0k6g1"]
+[ext_resource type="Script" path="res://scripts/bird.gd" id="1_0k6g1"]
 [ext_resource type="Texture2D" uid="uid://b5qsntbyx60tt" path="res://assets/img/obstacles/BirdSprite.png" id="1_nlcn3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5e5gb"]
